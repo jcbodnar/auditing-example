@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.UUID;
@@ -30,7 +29,7 @@ public class DemoApplicationTests {
         ResourceEntity differentNameSameIdResourceEntity = ResourceEntity.builder().id(resourceEntity.getId()).name("Bodnar").version(resourceEntity.getVersion()).build();
         ResourceEntity updatedResourceEntity = resourceRepository.save(differentNameSameIdResourceEntity);
 
-        assert savedResourceEntity.getCreatedBy() == updatedResourceEntity.getCreatedBy();
-        assert savedResourceEntity.getCreatedDate() == updatedResourceEntity.getCreatedDate();
+        assert savedResourceEntity.getCreatedBy().equals(updatedResourceEntity.getCreatedBy());
+        assert savedResourceEntity.getCreatedDate().equals(updatedResourceEntity.getCreatedDate());
     }
 }
